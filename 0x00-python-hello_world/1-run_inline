@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 "$TMP_FILE"
+python3 $TMP_FILE
