@@ -11,5 +11,7 @@
  * Return: 0
  */
 
+typedef struct 
+
 int check_cycle(listint_t *list);
 
