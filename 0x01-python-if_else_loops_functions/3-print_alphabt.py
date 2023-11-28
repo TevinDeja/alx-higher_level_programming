@@ -1,4 +1,5 @@
 #!/usr/bin/python3
-for letters in range(97, 123):
-    if chr(letters) != 'q' and chr(letters) != 'e':
-        print(f"{chr(letters)}", end="")
+for char_code in range(ord('a'), ord('z') + 1):
+    current_char = chr(char_code)
+    if current_char != 'q' and current_char != 'e':
+        print(current_char, end='')
