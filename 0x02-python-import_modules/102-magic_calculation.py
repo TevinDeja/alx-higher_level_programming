@@ -1,20 +1,14 @@
 #!/usr/bin/python3
-import custom_module
 
-def my_calculation(x, y):
+def custom_calculation(x, y):
+    from magic_calculation_102 import add, sub
 
-    from my_calculation_utilities import multiply, divide
+    if x < y:
+        result = add(x, y)
 
-    if x > y:
+        for i in range(4, 6):
+            result = add(result, i)
 
-        z = multiply(x, y)
-
-        for i in range(2, 4):
-
-            z = multiply(z, i)
-
-        return z
-
+        return result
     else:
-
-        return divide(x, y)
+        return sub(x, y)
