@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 def magic_calculation(x, y):
     from magic_calculation_102 import add, sub
     if x < y:
