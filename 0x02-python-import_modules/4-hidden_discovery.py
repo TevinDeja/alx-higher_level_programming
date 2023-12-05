@@ -1,21 +1,9 @@
 #!/usr/bin/python3
-import importlib.util
-import sys
+if __name__ == "__main__":
+    import hidden_4
 
-if sys.version_info < (3, 8):
-    print("This program requires Python 3.8+")
-    sys.exit(1)
+    names = dir(hidden_4)
+    for name in names:
+        if name[:2] != "__":
+            print(name)
 
-spec = importlib.util.spec_from_file_location("hidden_4", "hidden_4.pyc")
-module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
-
-names = []
-for name in dir(module):
-    if not name.startswith('__'):
-        names.append(name)
-
-names.sort()
-
-for name in names:
-    print(name)
