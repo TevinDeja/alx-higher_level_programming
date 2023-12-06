@@ -1,22 +1,29 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
-    if roman_string is None or not isinstance(roman_string, str):
+    if not isinstance(roman_string, str) or not roman_string:
         return 0
 
-    roman_to_int_mapping = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    roman_numerals = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000
+    }
 
-    result = 0
-    index = 0
+    total = 0
+    prev_value = 0
 
-    while index < len(roman_string):
-        current_symbol = roman_string[index]
-        next_symbol = roman_string[index + 1] if index + 1 < len(roman_string) else None
+    for numeral in reversed(roman_string):
+        value = roman_numerals.get(numeral, 0)
 
-        if next_symbol is not None and roman_to_int_mapping[next_symbol] > roman_to_int_mapping[current_symbol]:
-            result += roman_to_int_mapping[next_symbol] - roman_to_int_mapping[current_symbol]
-            index += 2
+        if value < prev_value:
+            total -= value
         else:
-            result += roman_to_int_mapping[current_symbol]
-            index += 1
+            total += value
 
-    return result
+        prev_value = value
+
+    return total
