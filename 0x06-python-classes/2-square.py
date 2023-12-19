@@ -1,14 +1,8 @@
 #!/usr/bin/python3
-"""Defines Square based on 1-square.py
-"""
+'''square module'''
 
 class Square:
-    """Represent square with private size attribute
-    
-    Attributes:
-        __size (int): size of the square
-    
-    """
+
 
     def __init__(self, size=0):
         """Initialize square with optional size
