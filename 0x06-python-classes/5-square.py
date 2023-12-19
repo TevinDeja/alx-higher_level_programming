@@ -1,57 +1,59 @@
+#!/usr/bin/python3
+
+
 class Square:
     """
-    This class represents a square.
+    class square that has attributes:
+        size
+    some attributes are protected from input.
     """
-
     def __init__(self, size=0):
         """
-        The constructor for the Square class.
-
-        Args:
-            size (int): The size of the square. Defaults to 0.
+        initialization function for our square clasee
         """
-        self.__size = size
+        if self.__validate_size(size):
+            self.__size = size
 
     @property
     def size(self):
         """
-        The size getter method.
-
-        Returns:
-            int: The size of the square.
+        getter for the size property
         """
         return self.__size
 
     @size.setter
     def size(self, value):
         """
-        The size setter method.
-
-        Args:
-            value (int): The new size of the square.
-
-        Raises:
-            TypeError: If value is not an integer.
-            ValueError: If value is less than 0.
+        setter for the size property
         """
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        if value < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = value
+        if self.__validate_size(value):
+            self.__size = value
 
     def area(self):
         """
-        This method calculates and returns the area of the square.
-
-        Returns:
-            int: The area of the square.
+        calculates the area of the square
         """
         return self.__size ** 2
 
     def my_print(self):
         """
-        This method prints the square in stdout with the character #.
+        prints the square using '#' characters
         """
-        for _ in range(self.__size):
-            print('#' * self.__size)
+        i = 0
+        for i in range(0, self.__size):
+            j = 0
+            for j in range(0, self.__size):
+                print("#", end='')
+            print()
+
+    def __validate_size(self, size):
+        """
+        validates the size, checking for errors
+        """
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
+        else:
+            return True
+        return False
