@@ -2,7 +2,12 @@
 '''square module'''
 
 class Square:
-
+    """Represent square with private size attribute
+    
+    Attributes:
+        __size (int): size of the square
+    
+    """
 
     def __init__(self, size=0):
         """Initialize square with optional size
