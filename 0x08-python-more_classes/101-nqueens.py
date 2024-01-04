@@ -4,47 +4,43 @@
 
 import sys
 
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    sys.exit(1)
+def is_safe(board, row, col, N):
+    # Check if there is a queen in the same column
+    for i in range(row):
+        if board[i] == col or board[i] - i == col - row or board[i] + i == col + row:
+            return False
+    return True
 
-N = 0
-try:
-    N = int(sys.argv[1])
-except:
-    print("N must be a number")
-    sys.exit(1)
+def print_solution(board, N):
+    for i in range(N):
+        print("{}{}".format(i, board[i]), end=" " if i != N - 1 else "\n")
 
-if N < 4:
-    print("N must be at least 4")
-    sys.exit(1)
-
-solutions = []
-col = set()
-pos_diag = set()
-neg_diag = set()
-
-def solve(r):
-    if r == N:
-        copy = solutions[:]
-        solutions.append(copy)
+def solve_nqueens(board, row, N):
+    if row == N:
+        print_solution(board, N)
         return
 
-    for c in range(N):
-        if c in col or (r + c) in pos_diag or (r - c) in neg_diag:
-            continue
+    for col in range(N):
+        if is_safe(board, row, col, N):
+            board[row] = col
+            solve_nqueens(board, row + 1, N)
 
-        col.add(c)
-        pos_diag.add(r + c)
-        neg_diag.add(r - c)
-        solutions.append(c)
-        solve(r + 1)
-        col.remove(c)
-        pos_diag.remove(r + c)
-        neg_diag.remove(r - c)
-        solutions.pop()
+def nqueens(N):
+    if not N.isdigit():
+        print("N must be a number")
+        sys.exit(1)
 
-solve(0)
+    N = int(N)
+    if N < 4:
+        print("N must be at least 4")
+        sys.exit(1)
 
-for solution in solutions:
-    print(solution)
+    board = [-1] * N
+    solve_nqueens(board, 0, N)
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+
+    nqueens(sys.argv[1])
