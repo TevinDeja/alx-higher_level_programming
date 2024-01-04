@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""Solves the N-queens puzzle"""
+
+
 import sys
 
 if len(sys.argv) != 2:
