@@ -1,1 +1,4 @@
-w
+def copy_list(l):
+  c = []
+  for e in l: c.append(e)
+  return c
