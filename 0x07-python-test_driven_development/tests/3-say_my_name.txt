@@ -1,0 +1,45 @@
+"""say_my_name module
+
+This module contains a function for printing a name
+
+Functions:
+say_my_name - prints "My name is <first_name> <last_name>"
+"""
+
+def say_my_name(first_name, last_name=""):
+    """Print a name
+    
+    Prints "My name is <first_name> <last_name>"
+    Args:
+        first_name (str): The first name to print. Must be string.
+        last_name (str, optional): The last name to print. 
+            Must be string. Defaults to empty string.
+    Raises:
+        TypeError: If either name is not a string 
+    """
+    if not isinstance(first_name, str):
+        raise TypeError("first_name must be a string")
+    if not isinstance(last_name, str): 
+        raise TypeError("last_name must be a string")
+    print("My name is {} {}".format(first_name, last_name))
+
+
+if __name__ == "__main__":
+    import unittest
+    
+    class TestSayMyName(unittest.TestCase):
+        def test_first_name(self):
+            self.assertRaises(TypeError, say_my_name, 12)
+        
+        def test_last_name(self): 
+            self.assertRaises(TypeError, say_my_name, "Bob", 12)
+            
+        def test_print_name(self):
+            captureOut = StringIO()
+            sys.stdout = captureOut
+            say_my_name("Bob")
+            sys.stdout = sys.__stdout__  
+            output = captureOut.getvalue().strip()
+            self.assertEqual(output, "My name is Bob") 
+            
+    unittest.main()
