@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Script that fetches https://alx-intranet.hbtn.io/status"""
-
 import urllib.request
+
 
 def fetch_status():
     with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as response:
